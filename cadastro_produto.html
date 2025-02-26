@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doguito Petshop | Cadastro de produto</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/base/base.css">
     <link rel="stylesheet" href="./assets/css/componentes/cabecalho.css">
     <link rel="stylesheet" href="./assets/css/componentes/cartao.css">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="./assets/css/componentes/botao.css">
     <link rel="stylesheet" href="./assets/css/cadastro_produto.css">
 </head>
+
 <body>
     <header class="cabecalho container">
         <img src="./assets/img/doguitoadm.svg" alt="Logo Doguito" class="cabecalho__logo">
@@ -21,7 +23,7 @@
             <ul class="cabecalho__lista-navegacao">
                 <li class="cabecalho__link"><a href="#">Dashboard</a></li>
                 <li class="cabecalho__link"><a href="#">Produtos</a></li>
-                <li class="cabecalho__link"><a href="lista_cliente.html">Clientes </a></li>
+                <li class="cabecalho__link"><a href="lista_cliente.html">Clientes</a></li>
                 <li class="cabecalho__link"><a href="#">Pets</a></li>
             </ul>
         </nav>
@@ -29,25 +31,55 @@
     <main class="container flex flex--centro flex--coluna">
         <section class="cartao cadastro">
             <h1 class="cartao__titulo">Cadastrar um produto</h1>
-            <form action="./cadastro_produto_concluido.html" class="flex flex--coluna">
+            <form action="./cadastro_produto_concluido.html" class="flex flex--coluna" id="cadastroProdutoForm">
                 <div class="input-container">
-                    <input name="nome" id="nome" class="input" type="text" placeholder="Nome">
+                    <input name="nome" id="nome" class="input" type="text" placeholder="Nome" required>
                     <label class="input-label" for="nome">Nome</label>
-                    <span class="input-mensagem-erro">Este campo não está válido</span>
+                    <span class="input-mensagem-erro">Este campo não pode estar vazio</span>
                 </div>
                 <div class="input-container cadastro__preco-container">
-                    <input name="preco" id="preco" class="input" type="text" placeholder="Preço">
+                    <input name="preco" id="preco" class="input" type="text" placeholder="Preço" required>
                     <label class="input-label" for="preco">Preço</label>
                     <span class="input-mensagem-erro">Este campo não está válido</span>
                 </div>
                 <div class="input-container cadastro__descricao-container">
-                    <input class="input" name="descricao" id="descricao" placeholder="Descrição">
+                    <input class="input" name="descricao" id="descricao" placeholder="Descrição" required>
                     <label class="input-label" for="descricao">Descrição</label>
                     <span class="input-mensagem-erro">Este campo não está válido</span>
                 </div>
-                <button class="botao">Cadastrar produto</button>
+                <div class="input-container cadastro__quantidade-container">
+                    <input class="input" type="number" name="quantidade" id="quantidade"
+                        placeholder="Quantidade em estoque" required min="1">
+                    <label class="input-label" for="quantidade">Quantidade em estoque</label>
+                    <span class="input-mensagem-erro">Este campo não pode estar vazio</span>
+                </div>
+                <button type="submit" class="botao">Cadastrar produto</button>
             </form>
         </section>
     </main>
+
+    
+
+    <input type="text" />
+    <script src="https://cdn.jsdelivr.net/npm/simple-mask-money@latest/lib/simple-mask-money.js"></script>
+
+    <script>
+        // Configurações da máscara monetária
+        const optionsBRL = {
+            prefix: 'R$ ',
+            fixed: true,
+            fractionDigits: 2,
+            decimalSeparator: ',',
+            thousandsSeparator: '.',
+            cursor: 'end'
+        };
+
+        // Aplica a máscara apenas ao campo de preço
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputPreco = document.getElementById('preco');
+            SimpleMaskMoney.setMask(inputPreco, optionsBRL);
+        });
+    </script>
 </body>
+
 </html>
